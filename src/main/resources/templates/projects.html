@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/site :: head(title='Nos Projets')}"></head>
+<body>
+
+<div th:replace="~{fragments/site :: header(active='projects')}"></div>
+
+<!-- HERO -->
+<section class="projects-hero">
+    <div class="container">
+        <div class="hero-wrap">
+            <div class="hero-text">
+                <h1>Nos projets</h1>
+                <p>Des actions concrètes, portées par nos jeunes, pour changer des vies durablement.</p>
+
+                <div class="hero-chips">
+                    <span class="chip">
+                        <span class="chip-ico" aria-hidden="true">✨</span>
+                        Projets en cours
+                    </span>
+
+                    <span class="chip" th:if="${projects != null}">
+                        <span class="chip-ico" aria-hidden="true">📦</span>
+                        <span th:text="${#lists.size(projects)}">0</span> projet(s)
+                    </span>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-card-inner">
+                    <div class="hero-card-title">Découvrez</div>
+                    <div class="hero-card-sub">Les dernières actions & missions</div>
+                    <div class="hero-card-foot muted">Clique sur un projet pour voir le détail.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LISTE -->
+<section class="section">
+    <div class="container">
+
+        <!-- Empty state -->
+        <div class="empty-modern" th:if="${projects == null || #lists.isEmpty(projects)}">
+            <div class="empty-ico" aria-hidden="true">🗂️</div>
+            <h2>Aucun projet pour le moment</h2>
+            <p class="muted">Reviens bientôt, de nouveaux projets arrivent.</p>
+            <a class="btn-primary" th:href="@{/}">Retour à l’accueil</a>
+        </div>
+
+        <!-- Grid -->
+        <div class="projects-grid-modern" th:if="${projects != null && !#lists.isEmpty(projects)}">
+            <article class="p-card" th:each="p : ${projects}">
+                <a class="p-link" th:href="@{/projects/{id}(id=${p.id})}">
+                    <div class="p-media">
+
+                        <!-- image -->
+                        <img class="p-img"
+                             th:if="${p.photos != null && !#lists.isEmpty(p.photos)}"
+                             th:src="@{/uploads/{f}(f=${p.photos[0].filename})}"
+                             alt="Photo projet"/>
+
+                        <!-- placeholder -->
+                        <div class="p-placeholder"
+                             th:if="${p.photos == null || #lists.isEmpty(p.photos)}">
+                            <div class="p-ph-ico" aria-hidden="true">🖼️</div>
+                            <div class="p-ph-text">Projet</div>
+                        </div>
+
+                        <!-- overlay gradient + badges -->
+                        <div class="p-overlay"></div>
+
+                        <div class="p-badges">
+                            <span class="badge"
+                                  th:if="${p.lieu != null && !#strings.isEmpty(p.lieu)}">
+                                <span class="b-ico" aria-hidden="true">📍</span>
+                                <span th:text="${p.lieu}">Lieu</span>
+                            </span>
+
+                            <span class="badge"
+                                  th:if="${p.date != null}">
+                                <span class="b-ico" aria-hidden="true">📅</span>
+                                <span th:text="${#temporals.format(p.date, 'dd/MM/yyyy')}">Date</span>
+                            </span>
+                        </div>
+
+                        <div class="p-cta" aria-hidden="true">
+                            <span>Voir</span>
+                            <span class="p-arrow">→</span>
+                        </div>
+                    </div>
+
+                    <div class="p-body">
+                        <h3 class="p-title" th:text="${p.title}">Titre projet</h3>
+
+                        <p class="p-desc"
+                           th:text="${p.description != null ? #strings.abbreviate(p.description, 140) : ''}">
+                            Description…
+                        </p>
+                    </div>
+                </a>
+            </article>
+        </div>
+
+    </div>
+</section>
+
+<div th:replace="~{fragments/site :: footer}"></div>
+
+<style>
+    /* ===== HERO moderne ===== */
+    .projects-hero{
+        padding: clamp(26px, 4vw, 56px) 0;
+        background:
+                radial-gradient(900px 400px at 12% 10%, rgba(159,226,191,.22), transparent 70%),
+                radial-gradient(900px 400px at 90% 20%, rgba(159,226,191,.14), transparent 70%);
+    }
+    .hero-wrap{
+        display:grid;
+        grid-template-columns: 1.3fr .7fr;
+        gap: 18px;
+        align-items:stretch;
+    }
+    @media (max-width: 900px){
+        .hero-wrap{grid-template-columns: 1fr;}
+    }
+    .projects-hero h1{
+        margin:0;
+        font-size: clamp(34px, 4.5vw, 58px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+    }
+    .projects-hero p{
+        margin: 10px 0 0;
+        max-width: 72ch;
+        font-size: 16px;
+        line-height: 1.65;
+        color: rgba(0,0,0,.72);
+    }
+    .hero-chips{
+        margin-top: 14px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+    .chip{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(0,0,0,.08);
+        background: rgba(255,255,255,.70);
+        backdrop-filter: blur(8px);
+        font-size: 14px;
+    }
+    .chip-ico{opacity:.9}
+
+    .hero-card{
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,.06);
+        background: rgba(255,255,255,.70);
+        box-shadow: 0 10px 30px rgba(0,0,0,.08);
+        backdrop-filter: blur(8px);
+        overflow:hidden;
+        position:relative;
+    }
+    .hero-card:before{
+        content:"";
+        position:absolute;
+        inset:-80px -80px auto auto;
+        width:240px;height:240px;
+        background: radial-gradient(circle at 30% 30%, rgba(159,226,191,.55), transparent 60%);
+        transform: rotate(20deg);
+    }
+    .hero-card-inner{
+        position:relative;
+        padding: 18px;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        gap:12px;
+    }
+    .hero-card-title{
+        font-weight: 700;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+        font-size: 13px;
+        opacity:.85;
+    }
+    .hero-card-sub{
+        font-size: 18px;
+        line-height: 1.35;
+        font-weight: 650;
+    }
+    .hero-card-foot{font-size: 13px}
+
+    .muted{opacity:.7}
+
+    /* ===== Empty state ===== */
+    .empty-modern{
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,.08);
+        background: #fff;
+        box-shadow: 0 10px 24px rgba(0,0,0,.06);
+        padding: 22px;
+        display:grid;
+        gap:10px;
+        place-items: start;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    .empty-ico{font-size: 32px}
+    .btn-primary{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,.10);
+        background: rgba(159,226,191,.30);
+        text-decoration:none;
+        color: inherit;
+        font-weight: 600;
+    }
+
+    /* ===== Grille moderne ===== */
+    .projects-grid-modern{
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+    @media (max-width: 980px){
+        .projects-grid-modern{grid-template-columns: repeat(2, minmax(0, 1fr));}
+    }
+    @media (max-width: 620px){
+        .projects-grid-modern{grid-template-columns: 1fr;}
+    }
+
+    .p-card{
+        border-radius: 18px;
+        overflow:hidden;
+        background: #fff;
+        border: 1px solid rgba(0,0,0,.08);
+        box-shadow: 0 10px 24px rgba(0,0,0,.06);
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .p-card:hover{
+        transform: translateY(-3px);
+        box-shadow: 0 18px 36px rgba(0,0,0,.10);
+    }
+
+    .p-link{
+        text-decoration:none;
+        color: inherit;
+        display:block;
+        height:100%;
+    }
+
+    /* media */
+    .p-media{
+        position:relative;
+        height: 210px;
+        overflow:hidden;
+        background: rgba(0,0,0,.04);
+    }
+    .p-img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+        transform: scale(1.02);
+        transition: transform .25s ease;
+    }
+    .p-card:hover .p-img{
+        transform: scale(1.07);
+    }
+
+    .p-placeholder{
+        width:100%;
+        height:100%;
+        display:grid;
+        place-items:center;
+        gap:6px;
+        color: rgba(0,0,0,.65);
+        background:
+                radial-gradient(300px 160px at 20% 20%, rgba(159,226,191,.25), transparent 60%),
+                radial-gradient(300px 160px at 80% 30%, rgba(159,226,191,.15), transparent 60%),
+                rgba(0,0,0,.03);
+    }
+    .p-ph-ico{font-size: 28px}
+    .p-ph-text{font-weight: 650}
+
+    .p-overlay{
+        position:absolute;
+        inset:0;
+        background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 60%);
+        opacity: .95;
+        pointer-events:none;
+    }
+
+    .p-badges{
+        position:absolute;
+        left: 12px;
+        bottom: 12px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        z-index:2;
+    }
+    .badge{
+        display:inline-flex;
+        align-items:center;
+        gap:7px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.88);
+        border: 1px solid rgba(0,0,0,.10);
+        backdrop-filter: blur(8px);
+        font-size: 13px;
+    }
+    .b-ico{opacity:.9}
+
+    .p-cta{
+        position:absolute;
+        right: 12px;
+        bottom: 12px;
+        z-index:2;
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.20);
+        border: 1px solid rgba(255,255,255,.25);
+        color: #fff;
+        backdrop-filter: blur(8px);
+        font-size: 13px;
+        opacity: .95;
+        transition: opacity .15s ease, transform .15s ease;
+    }
+    .p-card:hover .p-cta{
+        opacity: 1;
+        transform: translateX(-2px);
+    }
+    .p-arrow{font-size: 16px; line-height: 1}
+
+    /* body */
+    .p-body{
+        padding: 14px 14px 16px;
+        display:grid;
+        gap: 8px;
+    }
+    .p-title{
+        margin:0;
+        font-size: 18px;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+    }
+    .p-desc{
+        margin:0;
+        color: rgba(0,0,0,.70);
+        line-height: 1.6;
+        font-size: 14px;
+    }
+</style>
+
+</body>
+</html>
