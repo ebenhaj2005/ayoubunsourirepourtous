@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ayoub Un Sourire Pour l’Éternité</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="../images/images1.jpg">
+    <link rel="stylesheet" href="../css/site.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="container header-container">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo.jpeg" alt="Logo">
+        </a>
+
+        <button class="mobile-menu-btn" type="button">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Accueil</a></li>
+            <li><a href="../projects.html" class="nav-link">Nos Projets</a></li>
+            <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="container">
+        <p>Ayoub Un Sourire Pour l’Éternité — Ensemble, construisons un avenir meilleur</p>
+        <p>Créé par <a href="https://www.linkedin.com/in/elias-benhaj-b4b022292/" target="_blank">Elias Benhaj</a></p>
+    </div>
+</footer>
+
+<script>
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+</script>
+
+</body>
+</html>

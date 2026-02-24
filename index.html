@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Accueil - Ayoub Un Sourire Pour l’Éternité</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/site.css">
+</head>
+
+<body>
+
+<!-- HEADER COMPONENT -->
+<div id="header"></div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container hero-content">
+        <h1 class="hero-title">AYOUB</h1>
+        <p class="hero-subtitle">Un sourire pour l'éternité</p>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Actions Organisées</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Jeunes actifs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Personnes soutenues</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Personne pour qui nous faisons tout cela</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 1 -->
+<section class="section">
+    <div class="container">
+        <div class="section-content">
+            <div class="section-image">
+                <img src="images/Ayoub.png" alt="Ayoub">
+            </div>
+            <div class="section-text">
+                <h2>Qui est Ayoub ?</h2>
+                <p>
+                    Ayoub était une personne profondément humaine, généreuse et inspirante.
+                    Toujours prêt à aider, il savait transmettre sa détermination,
+                    sa bienveillance et son énergie positive à ceux qui l’entouraient.
+                </p>
+                <p>
+                    Aujourd’hui, son souvenir continue de vivre à travers cette association
+                    et les actions menées en son nom.
+                </p>
+                <p>
+                    Qu’Allah lui fasse miséricorde et illumine sa tombe.
+                    Ayoub restera à jamais dans nos cœurs.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Pourquoi cette association ?</h2>
+                <p>
+                    Parce qu’Ayoub incarnait la générosité, la solidarité
+                    et l’envie sincère d’aider les autres.
+                    Son énergie a inspiré toute une génération.
+                </p>
+            </div>
+            <div class="section-image">
+                <img src="images/jeunes.png" alt="Jeunes">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="section">
+    <div class="container">
+        <div class="section-content">
+            <div class="section-image">
+                <img src="images/action.png" alt="Action solidaire">
+            </div>
+            <div class="section-text">
+                <h2>En quoi s’engagent nos jeunes ?</h2>
+                <p>
+                    Organisation d’actions solidaires, récolte de fonds,
+                    projets humanitaires durables et soutien aux plus démunis.
+                    Chaque action est un hommage vivant.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DONATION -->
+<section class="donate">
+    <div class="container">
+        <h2 class="donate-title">Votre don construit l'avenir</h2>
+        <p class="donate-subtitle">Chaque contribution transforme des vies</p>
+
+        <div class="donate-card">
+            <h3>Faites un don</h3>
+
+            <p id="iban" class="iban">BE64 0019 7398 4352</p>
+
+            <button type="button" class="copy-btn" id="copyBtn">
+                Copier l’IBAN
+            </button>
+
+            <p id="copyMessage" class="copy-message"></p>
+        </div>
+
+        <p class="org">Ayoub Un Sourire Pour l'Éternité</p>
+    </div>
+</section>
+
+<!-- FOOTER COMPONENT -->
+<div id="footer"></div>
+
+<!-- JS -->
+<script src="js/components.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const ibanEl = document.getElementById("iban");
+    const copyBtn = document.getElementById("copyBtn");
+    const copyMessage = document.getElementById("copyMessage");
+
+    if (copyBtn) {
+        copyBtn.addEventListener("click", function() {
+            const text = ibanEl.textContent;
+
+            navigator.clipboard.writeText(text).then(function() {
+                copyMessage.textContent = "IBAN copié avec succès ✅";
+                setTimeout(() => copyMessage.textContent = "", 2000);
+            }).catch(function() {
+                copyMessage.textContent = "Copie impossible ❌";
+            });
+        });
+    }
+
+});
+</script>
+
+</body>
+</html>
