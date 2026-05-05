@@ -1,172 +1,483 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
+    <meta name="description" content="Ayoub Un Sourire Pour l'Éternité — Association solidaire en mémoire d'Ayoub. Rejoignez le mouvement et soutenez nos actions humanitaires.">
+<meta name="keywords" content="Ayoub, association solidaire, humanitaire, don, jeunes">
+<meta property="og:title" content="Ayoub – Un Sourire Pour l'Éternité">
+<meta property="og:description" content="Association solidaire en mémoire d'Ayoub.">
+<meta property="og:url" content="https://TON-SITE.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Accueil - Ayoub Un Sourire Pour l’Éternité</title>
-
-    <!-- Google Fonts -->
+    <title>Accueil - Ayoub Un Sourire Pour l'Éternité</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/site.css">
+        :root {
+            --green:      #5C7A5C;
+            --green-dark: #3D5C3D;
+            --green-deep: #2E4A2E;
+            --green-pale: #EDF3ED;
+            --green-light:#7A9E7A;
+            --white:      #ffffff;
+            --off:        #F5F7F5;
+            --text:       #1a1a1a;
+            --muted:      #5a5a5a;
+            --border:     #E2E8E2;
+            --radius-xl:  24px;
+            --radius-lg:  16px;
+            --radius-md:  12px;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER (same as original) ── */
+        header {
+            background: var(--white);
+            padding: 1rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 200;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+        }
+        .header-brand {
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            letter-spacing: 0.04em;
+        }
+        .header-brand span {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--green-light);
+            letter-spacing: 0.05em;
+        }
+        .header-nav { display: flex; gap: 2rem; }
+        .header-nav a {
+            font-size: 0.8rem; font-weight: 500;
+            color: var(--muted); text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+        }
+        .header-nav a:hover { color: var(--green-dark); }
+        .header-donate {
+            background: var(--green-dark);
+            color: #fff;
+            font-size: 0.8rem; font-weight: 600;
+            padding: 0.55rem 1.4rem;
+            border: none; border-radius: 50px;
+            cursor: pointer; letter-spacing: 0.05em;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .header-donate:hover { background: var(--green-deep); transform: translateY(-1px); }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--green);
+            padding: 5rem 3rem 9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-inner { max-width: 700px; }
+        .hero-eyebrow {
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 1rem;
+        }
+        .hero-title {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 700; color: #fff;
+            line-height: 1; letter-spacing: -0.01em;
+            margin-bottom: 1.25rem;
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(255,255,255,0.85);
+            font-weight: 300; line-height: 1.6;
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+        }
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--green-deep);
+            color: #fff;
+            font-size: 0.9rem; font-weight: 600;
+            padding: 0.85rem 2rem;
+            border: none; border-radius: 50px;
+            cursor: pointer; letter-spacing: 0.03em;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { background: #1f3a1f; transform: translateY(-2px); }
+        .btn-secondary {
+            background: #fff;
+            color: var(--green-dark);
+            font-size: 0.9rem; font-weight: 600;
+            padding: 0.85rem 2rem;
+            border: none; border-radius: 50px;
+            cursor: pointer; letter-spacing: 0.03em;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover { background: var(--green-pale); transform: translateY(-2px); }
+
+        /* ── STATS CARDS (overlap hero) ── */
+        .stats-overlap {
+            background: var(--green);
+            padding-bottom: 0;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            transform: translateY(0);
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: var(--radius-xl);
+            padding: 1.75rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.13);
+        }
+        .stat-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+        .stat-number {
+            font-size: 2.2rem; font-weight: 800;
+            color: var(--green-light);
+            line-height: 1; margin-bottom: 0.4rem;
+        }
+        .stat-label {
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 0.02em; line-height: 1.4;
+        }
+
+        /* ── SECTIONS ── */
+        .sections-wrapper {
+            background: var(--green);
+            padding-top: 0;
+        }
+        .sections-bg {
+            background: var(--off);
+            border-radius: 32px 32px 0 0;
+            margin-top: 3rem;
+            padding-top: 5rem;
+            overflow: hidden;
+        }
+
+        .section { padding: 5rem 3rem; }
+        .section-alt { background: var(--white); }
+        .section-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .section-inner.flip { direction: rtl; }
+        .section-inner.flip > * { direction: ltr; }
+
+        .section-img {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--green-pale);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+        }
+        .section-img img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--green-dark);
+            background: var(--green-pale);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+        }
+        .section-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--green-dark);
+        }
+        .section-text h2 {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700; line-height: 1.3;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+        }
+        .section-text p {
+            color: var(--muted);
+            font-size: 0.97rem;
+            margin-bottom: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* ── DONATE ── */
+        .donate {
+            background: var(--green-dark);
+            padding: 6rem 3rem;
+            text-align: center;
+        }
+        .donate-title {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700; color: #fff;
+            margin-bottom: 0.6rem;
+        }
+        .donate-subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem; font-style: italic;
+            margin-bottom: 3rem;
+        }
+        .donate-card {
+            background: #fff;
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            margin: 0 auto;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+        }
+        .donate-card h3 {
+            font-size: 1.1rem; font-weight: 700;
+            color: var(--text); margin-bottom: 1.5rem;
+        }
+        .iban {
+            font-size: 1.1rem; font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--green-dark);
+            background: var(--green-pale);
+            border-radius: var(--radius-md);
+            padding: 0.9rem 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .copy-btn {
+            width: 100%;
+            background: var(--green-dark);
+            color: #fff; border: none;
+            padding: 0.9rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { background: var(--green-deep); transform: translateY(-1px); }
+        .copy-message {
+            font-size: 0.8rem; color: var(--green-dark);
+            margin-top: 0.75rem; min-height: 1.2em; font-weight: 500;
+        }
+        .org {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.78rem; font-style: italic;
+            margin-top: 2rem; letter-spacing: 0.05em;
+        }
+
+        /* ── FOOTER (same as original) ── */
+        footer {
+            background: var(--text);
+            padding: 2rem 3rem;
+            text-align: center;
+        }
+        footer p {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.75rem; letter-spacing: 0.05em;
+        }
+
+        /* ── REVEAL ANIMATIONS ── */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.d1 { transition-delay: 0.1s; }
+        .reveal.d2 { transition-delay: 0.2s; }
+        .reveal.d3 { transition-delay: 0.3s; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.5rem; }
+            .header-nav { display: none; }
+            .hero { padding: 4rem 1.5rem 7rem; }
+            .stats-cards { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
+            .section { padding: 4rem 1.5rem; }
+            .section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .section-inner.flip { direction: ltr; }
+            .donate { padding: 4rem 1.5rem; }
+            footer { padding: 1.5rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- HEADER COMPONENT -->
-<div id="header"></div>
+<!-- HEADER -->
+<header>
+    <div class="header-brand">
+        AYOUB
+        <span>Un sourire pour l'éternité</span>
+    </div>
+    <nav class="header-nav">
+        <a href="/index.html">Accueil</a>
+        <a href="/projects.html">Actions</a>
+        <a href="/contact.html">Contact</a>
+    </nav>
+    <button class="header-donate" onclick="document.querySelector('.donate').scrollIntoView({behavior:'smooth'})">
+        Faire un don
+    </button>
+</header>
 
 <!-- HERO -->
 <section class="hero">
-    <div class="container hero-content">
+    <div class="hero-inner">
+        <p class="hero-eyebrow">Association Solidaire</p>
         <h1 class="hero-title">AYOUB</h1>
-        <p class="hero-subtitle">Un sourire pour l'éternité</p>
-    </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">30+</div>
-                <div class="stat-label">Actions Organisées</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Jeunes actifs</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">1000+</div>
-                <div class="stat-label">Personnes soutenues</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Personne pour qui nous faisons tout cela</div>
-            </div>
+        <p class="hero-subtitle">Un sourire pour l'éternité — transformer la douleur en actions, et les actions en sourires.</p>
+        <div class="hero-btns">
+            <button class="btn-primary" onclick="window.location.href='contact.html'">Rejoindre le mouvement</button>
+            <button class="btn-secondary" onclick="window.location.href='projects.html'">Voir nos actions</button>
         </div>
     </div>
 </section>
 
-<!-- SECTION 1 -->
-<section class="section">
-    <div class="container">
-        <div class="section-content">
-            <div class="section-image">
-                <img src="images/Ayoub.png" alt="Ayoub">
-            </div>
-            <div class="section-text">
-                <h2>Qui est Ayoub ?</h2>
-                <p>
-                    Ayoub était une personne profondément humaine, généreuse et inspirante.
-                    Toujours prêt à aider, il savait transmettre sa détermination,
-                    sa bienveillance et son énergie positive à ceux qui l’entouraient.
-                </p>
-                <p>
-                    Aujourd’hui, son souvenir continue de vivre à travers cette association
-                    et les actions menées en son nom.
-                </p>
-                <p>
-                    Qu’Allah lui fasse miséricorde et illumine sa tombe.
-                    Ayoub restera à jamais dans nos cœurs.
-                </p>
-            </div>
+<!-- STATS OVERLAP -->
+<div class="stats-overlap">
+    <div class="stats-cards">
+        <div class="stat-card reveal">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-number">30+</div>
+            <div class="stat-label">Actions organisées</div>
+        </div>
+        <div class="stat-card reveal d1">
+            <div class="stat-icon">👥</div>
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Jeunes actifs</div>
+        </div>
+        <div class="stat-card reveal d2">
+            <div class="stat-icon">🤲</div>
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Personnes soutenues</div>
+        </div>
+        <div class="stat-card reveal d3">
+            <div class="stat-icon">💚</div>
+            <div class="stat-number">1</div>
+            <div class="stat-label">Personne pour qui nous faisons tout cela</div>
+        </div>
+    </div>
+
+    <!-- rounded top of white section -->
+    <div style="height:3rem; background:var(--green);"></div>
+    <div style="background:var(--off); border-radius:32px 32px 0 0; height:3rem;"></div>
+</div>
+
+<!-- SECTION 1: Qui est Ayoub -->
+<section class="section" style="background:var(--off); padding-top:2rem;">
+    <div class="section-inner reveal">
+        <div class="section-img">
+            <img src="images/Ayoub.png" alt="Ayoub" onerror="this.style.display='none'">
+        </div>
+        <div class="section-text">
+            <span class="section-tag">Qui est Ayoub</span>
+            <h2>Une âme généreuse, un souvenir éternel</h2>
+            <p>Ayoub était une personne profondément humaine, généreuse et inspirante. Toujours prêt à aider, il savait transmettre sa détermination, sa bienveillance et son énergie positive à ceux qui l'entouraient.</p>
+            <p>Aujourd'hui, son souvenir continue de vivre à travers cette association et les actions menées en son nom.</p>
+            <p>Qu'Allah lui fasse miséricorde et illumine sa tombe. Ayoub restera à jamais dans nos cœurs.</p>
         </div>
     </div>
 </section>
 
-<!-- SECTION 2 -->
+<!-- SECTION 2: Pourquoi -->
 <section class="section section-alt">
-    <div class="container">
-        <div class="section-content">
-            <div class="section-text">
-                <h2>Pourquoi cette association ?</h2>
-                <p>
-                    Parce qu’Ayoub incarnait la générosité, la solidarité
-                    et l’envie sincère d’aider les autres.
-                    Son énergie a inspiré toute une génération.
-                </p>
-            </div>
-            <div class="section-image">
-                <img src="images/jeunes.png" alt="Jeunes">
-            </div>
+    <div class="section-inner flip reveal">
+        <div class="section-img">
+            <img src="images/jeunes.png" alt="Jeunes" onerror="this.style.display='none'">
+        </div>
+        <div class="section-text">
+            <span class="section-tag">Pourquoi cette association</span>
+            <h2>Pérenniser un héritage de solidarité</h2>
+            <p>Parce qu'Ayoub incarnait la générosité, la solidarité et l'envie sincère d'aider les autres. Son énergie a inspiré toute une génération.</p>
         </div>
     </div>
 </section>
 
-<!-- SECTION 3 -->
-<section class="section">
-    <div class="container">
-        <div class="section-content">
-            <div class="section-image">
-                <img src="images/action.png" alt="Action solidaire">
-            </div>
-            <div class="section-text">
-                <h2>En quoi s’engagent nos jeunes ?</h2>
-                <p>
-                    Organisation d’actions solidaires, récolte de fonds,
-                    projets humanitaires durables et soutien aux plus démunis.
-                    Chaque action est un hommage vivant.
-                </p>
-            </div>
+<!-- SECTION 3: Engagement -->
+<section class="section" style="background:var(--off);">
+    <div class="section-inner reveal">
+        <div class="section-img">
+            <img src="images/action.png" alt="Action solidaire" onerror="this.style.display='none'">
+        </div>
+        <div class="section-text">
+            <span class="section-tag">En quoi s'engagent nos jeunes</span>
+            <h2>Des actions concrètes, un impact durable</h2>
+            <p>Organisation d'actions solidaires, récolte de fonds, projets humanitaires durables et soutien aux plus démunis. Chaque action est un hommage vivant.</p>
         </div>
     </div>
 </section>
 
-<!-- DONATION -->
+<!-- DONATE -->
 <section class="donate">
-    <div class="container">
-        <h2 class="donate-title">Votre don construit l'avenir</h2>
-        <p class="donate-subtitle">Chaque contribution transforme des vies</p>
-
-        <div class="donate-card">
-            <h3>Faites un don</h3>
-
-            <p id="iban" class="iban">BE64 0019 7398 4352</p>
-
-            <button type="button" class="copy-btn" id="copyBtn">
-                Copier l’IBAN
-            </button>
-
-            <p id="copyMessage" class="copy-message"></p>
-        </div>
-
-        <p class="org">Ayoub Un Sourire Pour l'Éternité</p>
+    <h2 class="donate-title reveal">Votre don construit l'avenir</h2>
+    <p class="donate-subtitle reveal">Chaque contribution transforme des vies</p>
+    <div class="donate-card reveal">
+        <h3>Faites un don</h3>
+        <p class="iban" id="iban">BE64 0019 7398 4352</p>
+        <button class="copy-btn" id="copyBtn">Copier l'IBAN</button>
+        <p class="copy-message" id="copyMessage"></p>
     </div>
+    <p class="org">Ayoub Un Sourire Pour l'Éternité</p>
 </section>
 
-<!-- FOOTER COMPONENT -->
-<div id="footer"></div>
-
-<!-- JS -->
-<script src="js/components.js"></script>
+<!-- FOOTER -->
+<footer>
+    <p>© Ayoub Un Sourire Pour l'Éternité — Tous droits réservés</p>
+</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-
-    const ibanEl = document.getElementById("iban");
-    const copyBtn = document.getElementById("copyBtn");
-    const copyMessage = document.getElementById("copyMessage");
-
-    if (copyBtn) {
-        copyBtn.addEventListener("click", function() {
-            const text = ibanEl.textContent;
-
-            navigator.clipboard.writeText(text).then(function() {
-                copyMessage.textContent = "IBAN copié avec succès ✅";
-                setTimeout(() => copyMessage.textContent = "", 2000);
-            }).catch(function() {
-                copyMessage.textContent = "Copie impossible ❌";
-            });
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
         });
-    }
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
 
-});
+    // IBAN copy
+    document.getElementById('copyBtn').addEventListener('click', function () {
+        const text = document.getElementById('iban').textContent;
+        const msg = document.getElementById('copyMessage');
+        navigator.clipboard.writeText(text).then(() => {
+            msg.textContent = 'IBAN copié avec succès ✓';
+            setTimeout(() => msg.textContent = '', 2500);
+        }).catch(() => { msg.textContent = 'Copie impossible'; });
+    });
 </script>
-
 </body>
 </html>
