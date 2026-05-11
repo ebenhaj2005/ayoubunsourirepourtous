@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
 
-    <link rel="icon" href="images/images1.jpg" />
+    <link rel="icon" href="images/Ayoub.png" />
     <link rel="stylesheet" href="css/site.css" />
 
     <style>
@@ -466,6 +466,49 @@
         display: block;
         margin-bottom: 6px;
       }
+
+      /* ===== Vignette vidéo sur la carte ===== */
+      .p-media--video {
+        background: #0d1a10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .p-video-thumb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1a2a1e 0%, #0a1510 100%);
+      }
+      .p-play-btn {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: rgba(159, 226, 191, 0.2);
+        border: 2px solid rgba(159, 226, 191, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+      .p-card:hover .p-play-btn {
+        transform: scale(1.1);
+        background: rgba(159, 226, 191, 0.38);
+      }
+
+      /* ===== Vidéo dans le modal ===== */
+      .gallery-video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: none;
+        background: #0d0f12;
+      }
     </style>
   </head>
 
@@ -577,6 +620,106 @@ Les jeunes au service de la Ummah 🤍"
             <a
               class="p-link js-project"
               href="#"
+              data-title="Distribution d’Eau 💧"
+              data-place="Bruxelles"
+              data-date="Ramadhan 2026"
+              data-desc="Distribution d’Eau 💧"
+              data-explain="Nous organisons régulièrement des distributions d’eau au profit d’associations et de différents lieux de solidarité.
+Ces actions ont pour objectif d’apporter une aide concrète et de partager un bien essentiel : l’eau.
+
+Un grand merci à toutes les personnes qui participent, de près ou de loin, à ces initiatives.
+BarakAllahou fikoum pour votre générosité et votre soutien.
+
+Si tous les dons ne sont pas entièrement utilisés pour l’achat de bouteilles d’eau, ils seront, comme l’année précédente, consacrés au financement d’un puits (in sha Allah).
+
+Ainsi, nous restons dans une démarche durable en permettant une sadaqa jariya autour de l’accès à l’eau.
+
+Les jeunes au service de la Ummah 🤍"
+              data-video="video/projetvideo1.MOV"
+            >
+              <div class="p-media p-media--video">
+                <div class="p-video-thumb">
+                  <div class="p-play-btn" aria-hidden="true">▶</div>
+                </div>
+                <div class="p-overlay"></div>
+
+                <div class="p-badges">
+                  <span class="badge"
+                    ><span class="b-ico" aria-hidden="true">📍</span
+                    ><span>Bruxelles</span></span
+                  >
+                  <span class="badge"
+                    ><span class="b-ico" aria-hidden="true">📅</span
+                    ><span>Ramadhan 2026</span></span
+                  >
+                </div>
+
+                <div class="p-cta" aria-hidden="true">
+                  <span>Voir</span><span class="p-arrow">→</span>
+                </div>
+              </div>
+
+              <div class="p-body">
+                <h3 class="p-title">Distribution d’Eau 💧</h3>
+                <p class="p-desc">
+                  Distributions d’eau régulières au profit d’associations et de lieux de solidarité.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a
+              class="p-link js-project"
+              href="#"
+              data-title="Rencontre avec des enfants 🤍"
+              data-place="Bruxelles"
+              data-date="Avril 2024"
+              data-desc="Rencontre avec des enfants 🤍"
+              data-explain="Nous avons eu l’honneur de vivre une journée particulièrement riche en émotions en collaboration avec une association partenaire, en allant à la rencontre d’enfants dans le besoin. À travers de simples attentions, quelques friandises et des moments de partage, nous avons essayé d’apporter un peu de joie et de réconfort. En retour, nous avons reçu une gratitude sincère et des sourires qui marquent profondément.
+
+Ces actions rappellent l’importance de la solidarité, de la présence et du soutien envers les plus vulnérables. Chaque geste, aussi simple soit-il, a une valeur réelle et contribue à créer un impact positif.
+
+Qu’Allah accepte les bonnes actions de chacun, guide notre communauté vers le bien, la paix et la prospérité, et soulage toutes les personnes dans le besoin en leur accordant patience et apaisement. Amin.
+
+Les jeunes au service de la Ummah 🤍"
+              data-video="video/video2.MOV"
+            >
+              <div class="p-media p-media--video">
+                <div class="p-video-thumb">
+                  <div class="p-play-btn" aria-hidden="true">▶</div>
+                </div>
+                <div class="p-overlay"></div>
+
+                <div class="p-badges">
+                  <span class="badge"
+                    ><span class="b-ico" aria-hidden="true">📍</span
+                    ><span>Bruxelles</span></span
+                  >
+                  <span class="badge"
+                    ><span class="b-ico" aria-hidden="true">📅</span
+                    ><span>Avril 2024</span></span
+                  >
+                </div>
+
+                <div class="p-cta" aria-hidden="true">
+                  <span>Voir</span><span class="p-arrow">→</span>
+                </div>
+              </div>
+
+              <div class="p-body">
+                <h3 class="p-title">Rencontre avec des enfants 🤍</h3>
+                <p class="p-desc">
+                  Une journée d’émotions au côté d’enfants dans le besoin, avec des moments de partage et de joie.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a
+              class="p-link js-project"
+              href="#"
               data-title="Projet d’Hiver ❄️"
               data-place="Bruxelles"
               data-date="16/01/2023"
@@ -667,6 +810,12 @@ Les jeunes au service de la Ummah 🤍"
               src=""
               alt="Photo projet"
             />
+            <video
+              class="gallery-video"
+              id="galleryVideo"
+              controls
+              playsinline
+            ></video>
 
             <div class="gallery-nav">
               <button
@@ -735,6 +884,7 @@ Les jeunes au service de la Ummah 🤍"
       const modalMeta = document.getElementById("modalMeta");
 
       const galleryImg = document.getElementById("galleryImg");
+      const galleryVideo = document.getElementById("galleryVideo");
       const galleryCounter = document.getElementById("galleryCounter");
       const thumbs = document.getElementById("thumbs");
 
@@ -760,10 +910,31 @@ Les jeunes au service de la Ummah 🤍"
             data.date
           )}</span></span>`;
 
-        currentImages = (data.images || []).filter(Boolean);
-        if (currentImages.length === 0) currentImages = ["images/images1.jpg"];
-        currentIndex = 0;
-        renderGallery();
+        const videoSrc = data.video || "";
+        const galleryNav = document.querySelector(".gallery-nav");
+
+        if (videoSrc) {
+          galleryImg.style.display = "none";
+          galleryVideo.src = videoSrc;
+          galleryVideo.style.display = "block";
+          galleryNav.style.display = "none";
+          galleryCounter.style.display = "none";
+          thumbs.innerHTML = "";
+          thumbs.style.display = "none";
+          currentImages = [];
+        } else {
+          galleryImg.style.display = "block";
+          galleryVideo.pause();
+          galleryVideo.src = "";
+          galleryVideo.style.display = "none";
+          galleryNav.style.display = "";
+          galleryCounter.style.display = "";
+          thumbs.style.display = "";
+          currentImages = (data.images || []).filter(Boolean);
+          if (currentImages.length === 0) currentImages = ["images/images1.jpg"];
+          currentIndex = 0;
+          renderGallery();
+        }
 
         modal.classList.add("open");
         modal.setAttribute("aria-hidden", "false");
@@ -774,6 +945,8 @@ Les jeunes au service de la Ummah 🤍"
         modal.classList.remove("open");
         modal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("modal-lock");
+        galleryVideo.pause();
+        galleryVideo.src = "";
       }
 
       function renderGallery() {
@@ -823,12 +996,13 @@ Les jeunes au service de la Ummah 🤍"
           const date = el.dataset.date || "";
           const desc = el.dataset.desc || "";
           const explain = el.dataset.explain || "";
+          const video = el.dataset.video || "";
           const images = (el.dataset.images || "")
             .split(",")
             .map((s) => s.trim())
             .filter(Boolean);
 
-          openModal({ title, place, date, desc, explain, images });
+          openModal({ title, place, date, desc, explain, images, video });
         });
       });
 
