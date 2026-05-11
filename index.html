@@ -87,6 +87,23 @@
         }
         .header-donate:hover { background: var(--green-deep); transform: translateY(-1px); }
 
+        .mobile-menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 201;
+        }
+        .mobile-menu-btn span {
+            width: 26px;
+            height: 3px;
+            background: var(--text);
+            transition: all 0.25s ease;
+            display: block;
+        }
+
         /* ── HERO ── */
         .hero {
             background: var(--green);
@@ -327,7 +344,29 @@
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             header { padding: 1rem 1.5rem; }
-            .header-nav { display: none; }
+            .header-donate { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .header-nav {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 5rem 2rem;
+                gap: 1.5rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.12);
+                transition: all 0.25s ease;
+                z-index: 200;
+            }
+            .header-nav a { font-size: 1rem; color: var(--text); }
+            .header-nav.active { right: 0; }
+            .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+            .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
             .hero { padding: 4rem 1.5rem 7rem; }
             .stats-cards { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
             .section { padding: 4rem 1.5rem; }
@@ -353,6 +392,9 @@
     </nav>
     <button class="header-donate" onclick="document.querySelector('.donate').scrollIntoView({behavior:'smooth'})">
         Faire un don
+    </button>
+    <button class="mobile-menu-btn" type="button" aria-label="Menu">
+        <span></span><span></span><span></span>
     </button>
 </header>
 
@@ -462,6 +504,22 @@
 </footer>
 
 <script>
+    // Mobile menu toggle
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const headerNav = document.querySelector('.header-nav');
+    if (mobileBtn && headerNav) {
+        mobileBtn.addEventListener('click', () => {
+            mobileBtn.classList.toggle('active');
+            headerNav.classList.toggle('active');
+        });
+        headerNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileBtn.classList.remove('active');
+                headerNav.classList.remove('active');
+            });
+        });
+    }
+
     // Scroll reveal
     const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
